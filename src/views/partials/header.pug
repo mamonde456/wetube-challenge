@@ -1,0 +1,16 @@
+header 
+    h1 home
+    nav 
+        ul 
+            li 
+                a(href="/") home 
+            if loggedIn 
+                li
+                    a(href="logout") logout
+                li 
+                    a(href="profile") #{loggedInUser.name} profile
+            if !loggedIn
+                li 
+                    a(href="/login") login 
+                li 
+                    a(href="/join") join 

@@ -1,0 +1,9 @@
+extends base
+
+block content 
+    if errorMessage 
+        span=errorMessage
+    form(method="post")
+        input(placeholder="username", required, type="text", name="username") 
+        input(placeholder="password", required, type="text", name="password") 
+        input(type="submit", value="log in") 
