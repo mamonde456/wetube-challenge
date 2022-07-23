@@ -8,7 +8,7 @@ header
                 li
                     a(href="logout") logout
                 li 
-                    a(href="profile") #{loggedInUser.name} profile
+                    a(href=`/${loggedInUser._id}/profile`) #{loggedInUser.name} profile
             if !loggedIn
                 li 
                     a(href="/login") login 

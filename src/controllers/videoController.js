@@ -1,5 +1,7 @@
-export const home = (req, res) => {
-  res.render("home", { pageTitle: "home" });
+import fs from "fs";
+
+export const home = async (req, res) => {
+  return res.render("home", { pageTitle: "home" });
 };
 
 export const watch = (req, res) => {

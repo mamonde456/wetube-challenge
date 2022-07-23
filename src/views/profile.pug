@@ -1,0 +1,8 @@
+extends base
+
+block content
+    form( method="post") 
+        input(placeholder="username", required, type="text",value={loggedInUser.username}, name="username") 
+        input(placeholder="name", required, type="text", name="name") 
+        input(placeholder="email", required, type="text", name="email") 
+        input(type="submit", value="save") 

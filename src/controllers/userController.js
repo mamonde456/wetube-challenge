@@ -1,6 +1,7 @@
 import User from "../models/User";
 import bcrypt from "bcrypt";
 import session from "express-session";
+import fs from "fs";
 
 export const getJoin = (req, res) => {
   res.render("join", { pageTitle: "created an account" });
@@ -47,7 +48,10 @@ export const postLogin = async (req, res) => {
   return res.redirect("/");
 };
 
-export const edit = (req, res) => {
+export const getEditProfile = (req, res) => {
+  return res.render("profile", { pageTitle: "edit profile" });
+};
+export const postEditProfile = (req, res) => {
   res.send("edit");
 };
 

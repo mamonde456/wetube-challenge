@@ -4,8 +4,11 @@ import {
   postJoin,
   getLogin,
   postLogin,
+  read,
+  text,
 } from "../controllers/userController";
 import { home, search } from "../controllers/videoController";
+import { uploadsFile } from "../middleware";
 
 const globalRouter = express.Router();
 
