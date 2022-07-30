@@ -1,3 +1,10 @@
 extends base
 
 block content
+    div
+        span=errorMessage
+    form( method="post") 
+        input(placeholder="title" name="title" required maxlength="80")
+        input(placeholder="overview" name="overview" required minlength="20")
+        input(placeholder="hashtag" name="hashtags")
+        button save

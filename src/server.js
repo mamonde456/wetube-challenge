@@ -1,7 +1,7 @@
 import express from "express";
 import session from "express-session";
 import morgan from "morgan";
-import { localsMiddlewaer } from "./middleware";
+import { localsMiddleware } from "./middleware";
 import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
@@ -21,7 +21,7 @@ app.use(
     }),
   })
 );
-app.use(localsMiddlewaer);
+app.use(localsMiddleware);
 
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");

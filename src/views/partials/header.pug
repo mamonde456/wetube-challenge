@@ -1,14 +1,18 @@
 header 
-    h1 home
+    h1=pageTitle
     nav 
         ul 
             li 
                 a(href="/") home 
             if loggedIn 
                 li
-                    a(href="logout") logout
+                    a(href="/logout") logout
                 li 
                     a(href=`/${loggedInUser._id}/profile`) #{loggedInUser.name} profile
+                li 
+                    a(href="/videos/upload") uploads
+                li 
+                    a(href="/search") search
             if !loggedIn
                 li 
                     a(href="/login") login 
