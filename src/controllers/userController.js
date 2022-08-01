@@ -11,9 +11,11 @@ export const postJoin = async (req, res) => {
   const {
     body: { username, name, password, password2, email },
   } = req;
-  const userExists = await User.exists({ username });
+  const userExists = await User.exists({ $or: [{ username }, { email }] });
   if (userExists) {
-    return res.status(400).render("join", { errorMessage: "aleady username" });
+    return res
+      .status(400)
+      .render("join", { errorMessage: "aleady username/email" });
   }
   if (password !== password2) {
     return res.status(400).render("join", { errorMessage: "wrong password" });
@@ -126,11 +128,85 @@ export const userGithubFinish = async (req, res) => {
   }
 };
 
+export const logout = (req, res) => {
+  req.session.destroy();
+  return res.redirect("/");
+};
+
 export const getEditProfile = (req, res) => {
   return res.render("profile", { pageTitle: "edit profile" });
 };
-export const postEditProfile = (req, res) => {
-  res.send("edit");
+export const postEditProfile = async (req, res) => {
+  const {
+    session: {
+      user: { _id },
+    },
+    body: { name, username, email },
+  } = req;
+
+  if (req.session.user.username !== username) {
+    const exists = await User.exists({ username });
+    if (exists) {
+      return res.status(400).render("profile", {
+        pageTitle: "Edit profile",
+        errorMessage: "User name already exists.",
+      });
+    }
+  }
+
+  if (req.session.user.email !== email) {
+    const exists = await User.exists({ email });
+    if (exists) {
+      return res.status(400).render("profile", {
+        pageTitle: "Edit profile",
+        errorMessage: "User email already exists.",
+      });
+    }
+  }
+
+  const newUser = await User.findOneAndUpdate(
+    _id,
+    {
+      name,
+      username,
+      email,
+    },
+    { new: true }
+  );
+  req.session.user = newUser;
+  return res.redirect("/");
+};
+
+export const getPassword = (req, res) => {
+  return res.render("change-password", { pageTitle: "change password" });
+};
+export const postPassword = async (req, res) => {
+  const {
+    session: {
+      user: { _id },
+    },
+    body: { oldPassword, newPassword, newPassword2 },
+  } = req;
+  const user = await User.findById(_id);
+  const ok = await bcrypt.compare(oldPassword, user.password);
+  if (!ok) {
+    return res.status(400).render("change-password", {
+      pageTitle: "change password",
+      errorMessage: "Existing passwords do not match.",
+    });
+  }
+  if (newPassword !== newPassword2) {
+    return res.status(400).render("change-password", {
+      pageTitle: "change password",
+      errorMessage: "The new password and password confirmation do not match.",
+    });
+  }
+
+  user.password = newPassword;
+  await user.save();
+  req.session.destroy();
+
+  return res.redirect("/login");
 };
 
 export const deleteUser = (req, res) => {

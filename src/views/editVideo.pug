@@ -1,0 +1,10 @@
+extends base
+
+block content 
+    div
+        span=errorMessage
+    form( method="post") 
+        input(placeholder="title" name="title" value=`${video.title}` required maxlength="80")
+        input(placeholder="overview" name="overview" value=`${video.overview}` required minlength="20")
+        input(placeholder="hashtags" name="hashtags" value=`${video.hashtags}`)
+        button save

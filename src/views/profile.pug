@@ -1,8 +1,15 @@
 extends base
 
 block content
+    if errorMessage 
+        span=errorMessage
     form( method="post") 
-        input(placeholder="username", required, type="text",value={loggedInUser.username}, name="username") 
-        input(placeholder="name", required, type="text", name="name") 
-        input(placeholder="email", required, type="text", name="email") 
-        input(type="submit", value="save") 
+        input(placeholder="username" required type="text" name="username" value=loggedInUser.username ) 
+        input(placeholder="name" required type="text" name="name" value=loggedInUser.name ) 
+        input(placeholder="email" required type="text" name="email" value=loggedInUser.email ) 
+        input(type="submit" value="save") 
+        hr
+        p
+            a(href="change-password") change password &rarr;
+        p
+            a(href="delete") Delete account &rarr;

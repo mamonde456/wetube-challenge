@@ -1,0 +1,16 @@
+extends base
+
+block content 
+    div
+        h3=video.title
+        p=video.overview
+        div 
+            each hashtag in video.hashtags
+                span=hashtag
+        small=video.createdAt
+        
+    hr
+    p
+        a(href=`${video._id}/edit-video`) edit video &rarr; 
+    p
+        a(href=`${video._id}/delete`) delete video &rarr; 

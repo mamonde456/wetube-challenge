@@ -6,9 +6,9 @@ header
                 a(href="/") home 
             if loggedIn 
                 li
-                    a(href="/logout") logout
+                    a(href="/users/logout") logout
                 li 
-                    a(href=`/${loggedInUser._id}/profile`) #{loggedInUser.name} profile
+                    a(href=`/users/profile`) #{loggedInUser.name} profile
                 li 
                     a(href="/videos/upload") uploads
                 li 
