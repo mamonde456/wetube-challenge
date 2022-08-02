@@ -6,18 +6,24 @@ import {
   logout,
   postEditProfile,
   postPassword,
+  profile,
   userGithubFinish,
   userGithubStart,
 } from "../controllers/userController";
-import { protectMiddleware, publicMiddleware } from "../middleware";
+import {
+  protectMiddleware,
+  publicMiddleware,
+  uploadsAvatar,
+} from "../middleware";
 
 const userRouter = express.Router();
 
+userRouter.get("/:id([0-9a-f]{24})", profile);
 userRouter
-  .route("/profile")
+  .route("/:id([0-9a-f]{24})/edit-profile")
   .all(protectMiddleware)
   .get(getEditProfile)
-  .post(postEditProfile);
+  .post(uploadsAvatar.single("avatar"), postEditProfile);
 userRouter
   .route("/change-password")
   .all(protectMiddleware)

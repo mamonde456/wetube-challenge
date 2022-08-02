@@ -1,4 +1,5 @@
 import fs from "fs";
+import User from "../models/User";
 import Video from "../models/Video";
 
 export const home = async (req, res) => {
@@ -11,15 +12,25 @@ export const getUpload = (req, res) => {
 };
 export const postUpload = async (req, res) => {
   const {
+    session: {
+      user: { _id },
+    },
+  } = req;
+  const {
     body: { title, overview, hashtags },
   } = req;
-  console.log(hashtags);
+  const { path } = req.file;
   try {
-    await Video.create({
+    const newVideo = await Video.create({
+      fileUrl: path,
       title,
       overview,
+      owner: _id,
       hashtags: Video.formatHashtags(hashtags),
     });
+    const user = await User.findById(_id);
+    user.videos.push(newVideo._id);
+    user.save();
     return res.redirect("/");
   } catch (err) {
     return res.status(400).render("upload", {
@@ -31,7 +42,7 @@ export const postUpload = async (req, res) => {
 
 export const watch = async (req, res) => {
   const { id } = req.params;
-  const video = await Video.findById(id);
+  const video = await Video.findById(id).populate("owner");
   if (!video) {
     return res.status(404).render("404", {
       pageTitle: "404",
@@ -54,9 +65,11 @@ export const getEdit = async (req, res) => {
 export const postEdit = async (req, res) => {
   const {
     body: { title, overview, hashtags },
+    file,
   } = req;
   const { id } = req.params;
   await Video.findByIdAndUpdate(id, {
+    fileUrl: file ? file.path : fileUrl,
     title,
     overview,
     hashtags: Video.formatHashtags(hashtags),

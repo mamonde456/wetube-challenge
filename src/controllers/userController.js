@@ -133,21 +133,28 @@ export const logout = (req, res) => {
   return res.redirect("/");
 };
 
+export const profile = async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id).populate("videos");
+  return res.render("profile", { pageTitle: user.name, user });
+};
+
 export const getEditProfile = (req, res) => {
-  return res.render("profile", { pageTitle: "edit profile" });
+  return res.render("edit-profile", { pageTitle: "edit profile" });
 };
 export const postEditProfile = async (req, res) => {
   const {
     session: {
-      user: { _id },
+      user: { _id, avatarUrl },
     },
     body: { name, username, email },
+    file,
   } = req;
 
   if (req.session.user.username !== username) {
     const exists = await User.exists({ username });
     if (exists) {
-      return res.status(400).render("profile", {
+      return res.status(400).render("edit-profile", {
         pageTitle: "Edit profile",
         errorMessage: "User name already exists.",
       });
@@ -157,7 +164,7 @@ export const postEditProfile = async (req, res) => {
   if (req.session.user.email !== email) {
     const exists = await User.exists({ email });
     if (exists) {
-      return res.status(400).render("profile", {
+      return res.status(400).render("edit-profile", {
         pageTitle: "Edit profile",
         errorMessage: "User email already exists.",
       });
@@ -167,6 +174,7 @@ export const postEditProfile = async (req, res) => {
   const newUser = await User.findOneAndUpdate(
     _id,
     {
+      avatarUrl: file ? file.path : avatarUrl,
       name,
       username,
       email,

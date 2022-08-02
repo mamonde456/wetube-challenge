@@ -3,7 +3,7 @@ import multer from "multer";
 export const localsMiddleware = (req, res, next) => {
   res.locals.loggedIn = Boolean(req.session.loggedIn);
   res.locals.siteName = "Wetube";
-  res.locals.loggedInUser = req.session.user;
+  res.locals.loggedInUser = req.session.user || {};
   next();
 };
 
@@ -23,4 +23,16 @@ export const publicMiddleware = (req, res, next) => {
   }
 };
 
-export const uploadsFile = multer({ dest: "uploads/" });
+export const uploadsAvatar = multer({
+  dest: "uploads/avatars/",
+  limits: {
+    fileSize: 3000000,
+  },
+});
+
+export const uploadsVideo = multer({
+  dest: "uploads/videos/",
+  limits: {
+    fileSize: 10000000,
+  },
+});
