@@ -8,6 +8,7 @@ mixin video(video)
             each hashtag in video.hashtags
                 li=hashtag
         small=video.createdAt
+        small  #{video.meta.views} #{video.meta.views === 1  ? "view" :"views"}
         br
         
     hr
