@@ -8,7 +8,7 @@ header
                 li
                     a(href="/users/logout") logout
                 li 
-                    a(href=`/users/profile`) #{loggedInUser.name} profile
+                    a(href=`/users/${loggedInUser._id}`) #{loggedInUser.name} profile
                 li 
                     a(href="/videos/upload") uploads
                 li 

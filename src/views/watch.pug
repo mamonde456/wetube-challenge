@@ -31,5 +31,21 @@ block content
                 a(href=`${video._id}/edit-video`) edit video &rarr; 
             p
                 a(href=`${video._id}/delete`) delete video &rarr; 
+        if loggedIn
+            div 
+                form#txtForm
+                    textarea#txtBox( placeholder="write a comments..." name="comments" )
+                    button#txtBtn send
+        div#commentWrap
+            ul#commentList
+                each comment in video.comments.reverse()
+                    li.commentLi(data-commentId=comment.id)
+                        p=comment.name
+                        p=comment.text
+                            span.deleteBtn ❌
+                        small=comment.createdAt
+                    
 block scripts
     script(src="/assets/js/videoPlayer.js")
+    if loggedIn
+        script(src="/assets/js/videoComments.js")

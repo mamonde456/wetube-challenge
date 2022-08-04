@@ -12,6 +12,7 @@ const app = express();
 const logger = morgan("dev");
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(
   session({
     secret: process.env.DB_SECRET,
@@ -28,6 +29,11 @@ app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
 app.use("/uploads", express.static("uploads"));
 app.use("/assets", express.static("assets"));
+app.use((req, res, next) => {
+  res.header("Cross-Origin-Embedder-Policy", "require-corp");
+  res.header("Cross-Origin-Opener-Policy", "same-origin");
+  next();
+});
 
 app.use("/", rootRouter);
 app.use("/users", userRouter);

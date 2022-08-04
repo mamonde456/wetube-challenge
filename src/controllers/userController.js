@@ -217,6 +217,10 @@ export const postPassword = async (req, res) => {
   return res.redirect("/login");
 };
 
-export const deleteUser = (req, res) => {
-  res.send("delete User");
+export const deleteUser = async (req, res) => {
+  const { id } = req.params;
+  await User.findByIdAndDelete(id);
+  req.session.loggedIn = false;
+  req.session.user = null;
+  return res.status(201).redirect("/");
 };

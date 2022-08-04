@@ -2,12 +2,14 @@ extends base
 
 block content
     video#video(width=400, height=400)
-    button#startBtn Start recording video
+    button#actionBtn Start recording video
     div
         span=errorMessage
     form( method="post" enctype="multipart/form-data") 
-        label(for="video") video
+        label(for="video") video upload
         input(name="video" id="video" required type="file" accept="video/*")
+        label(for="thumb") Thumbnail upload
+        input(name="thumb" id="thumb" required type="file" accept="image/*")
         input(placeholder="title" name="title" required maxlength="80")
         input(placeholder="overview" name="overview" required minlength="20")
         input(placeholder="hashtag" name="hashtags")

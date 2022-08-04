@@ -8,6 +8,7 @@ module.exports = {
     main: BASE_URL + "main.js",
     videoPlayer: BASE_URL + "videoPlayer.js",
     videoRecording: BASE_URL + "videoRecording.js",
+    videoComments: BASE_URL + "videoComments.js",
   },
   mode: "development",
   watch: true,

@@ -30,7 +30,7 @@ userRouter
   .get(getPassword)
   .post(postPassword);
 userRouter.get("/logout", logout);
-userRouter.get("/:id(\\d+)/delete", deleteUser);
+userRouter.get("/:id([0-9a-f]{24})/delete", deleteUser);
 userRouter.get("/github/start", publicMiddleware, userGithubStart);
 userRouter.get("/github/finish", publicMiddleware, userGithubFinish);
 
