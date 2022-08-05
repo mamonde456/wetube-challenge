@@ -4,7 +4,9 @@ import Video from "../models/Video";
 import Comment from "../models/Comment";
 
 export const home = async (req, res) => {
-  const videos = await Video.find({}).sort({ createdAt: "desc" });
+  const videos = await Video.find({})
+    .sort({ createdAt: "desc" })
+    .populate("owner");
   return res.render("home", { pageTitle: "home", videos });
 };
 
@@ -50,7 +52,6 @@ export const watch = async (req, res) => {
       errorMessage: "sorry, video not found.",
     });
   }
-
   return res.render("watch", { pageTitle: `${video.title}`, video });
 };
 export const getEdit = async (req, res) => {
@@ -118,7 +119,9 @@ export const commentsApi = async (req, res) => {
       user: { _id },
     },
   } = req;
-  console.log(_id);
+  if (!text) {
+    return;
+  }
   const video = await Video.findById(id);
   const user = await User.findById(_id);
   if (!video) {

@@ -1,12 +1,14 @@
 header 
-    h1=pageTitle
     nav 
-        ul 
+        i.fas.fa-bars.home-icon
+        ul#headerList
             li 
-                a(href="/") home 
+                a(href="/")
+                    span home 
             if loggedIn 
                 li
-                    a(href="/users/logout") logout
+                    a(href="/users/logout") 
+                        span logout
                 li 
                     a(href=`/users/${loggedInUser._id}`) #{loggedInUser.name} profile
                 li 

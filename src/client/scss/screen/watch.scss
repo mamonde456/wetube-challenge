@@ -1,0 +1,239 @@
+.video-watch-wrap {
+  width: 100vw;
+  //   padding: 30px;
+}
+#videoContainer {
+  width: 100%;
+  position: relative;
+  .video-background {
+    width: 100%;
+    background: black;
+    video {
+      width: 1200px;
+      position: relative;
+      left: 50%;
+      margin-left: -600px;
+    }
+  }
+  #videoControls {
+    color: white;
+    width: 1200px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 50%
+    );
+    position: absolute;
+    left: 50%;
+    margin-left: -600px;
+    bottom: 0px;
+    #play,
+    #mute,
+    #fullScreen {
+      padding: 10px;
+      font-size: 20px;
+    }
+    #volume {
+      display: none;
+      -webkit-transition: width 0.5s;
+    }
+    #time {
+      padding: 10px;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 15px;
+      height: 15px;
+      border-radius: 10px;
+      background: #0f3d3e;
+    }
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 120px;
+      height: 8px;
+      border: solid 1px #0f3d3e;
+      border-radius: 8px;
+    }
+    #timeline {
+      width: 600px;
+    }
+  }
+}
+
+.video_info {
+  width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  .video-edit-wrap {
+    width: 300px;
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    right: 0px;
+    p {
+      padding: 10px;
+    }
+  }
+
+  .video-title {
+    width: 100%;
+    font-size: 26px;
+    font-weight: 500;
+    padding: 10px;
+  }
+  .video-overview {
+    width: 100%;
+    padding: 10px;
+  }
+  .video-hashtag {
+    padding: 10px;
+    opacity: 0.5;
+    span {
+      margin-right: 10px;
+    }
+  }
+  .video-createdAt {
+    font-size: 12px;
+    padding: 10px;
+    opacity: 0.5;
+  }
+
+  div.video-owner {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .owner-name {
+      font-size: 22px;
+    }
+    a {
+      width: 60px;
+      display: block;
+      .avatar-img {
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        background: red;
+      }
+    }
+  }
+}
+
+div.txt-wrap {
+  width: 100%;
+  #txtForm {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    // justify-content: center;
+
+    textarea#txtBox {
+      resize: none;
+      border: none;
+      border-bottom: solid 1px #100f0f;
+      width: 80%;
+      background: none;
+      text-indent: 10px;
+      margin-right: 10px;
+    }
+    textarea#txtBox:focus {
+      border-bottom: solid 2px black;
+      outline: none;
+    }
+    #txtBtn {
+      width: 100px;
+      height: 40px;
+      border: none;
+      background-color: #0f3d3e;
+      border-radius: 5px;
+      color: white;
+      font-size: 15px;
+    }
+  }
+}
+.txtAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  margin-right: 20px;
+
+  //   background: red;
+}
+div#commentWrap {
+  padding: 20px;
+  ul#commentList {
+    display: flex;
+    align-items: center;
+    li {
+      width: 100%;
+      position: relative;
+      div.userWrap {
+        display: flex;
+        align-items: center;
+      }
+      &:hover {
+        .commentsBtnIcon {
+          display: block;
+        }
+      }
+      .commentsBtnIcon {
+        display: none;
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+      div.btnBox {
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        position: absolute;
+        right: -120px;
+        top: 5px;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        border: solid 1px #e2dcc8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        display: none;
+        p {
+          padding: 15px 10px;
+          font-size: 20px;
+          i {
+            margin-right: 10px;
+          }
+          i.fa-xmark {
+            font-size: 25px;
+          }
+        }
+      }
+    }
+
+    p.commentName {
+      font-size: 18px;
+      padding: 10px;
+      font-weight: 700;
+    }
+    .commentTxtWrap {
+      padding: 10px 60px;
+    }
+    p.commentText {
+      padding: 5px 10px;
+    }
+
+    small.commentCreatedAt {
+      padding: 5px 10px;
+      opacity: 0.5;
+      font-size: 12px;
+    }
+  }
+}

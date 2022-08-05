@@ -10,7 +10,19 @@ const maxTime = videoContainer.querySelector("#maxTime");
 const fullScreen = videoContainer.querySelector("#fullScreen");
 
 video.volume = 0.5;
+timeline.value = 0;
 let volumeValue;
+switch (volumeValue) {
+  case 0:
+    muteBtn.className = "fas fa-volume-xmark";
+    break;
+  case 0.5:
+    muteBtn.className = "fas fa-volume-low";
+    break;
+  case 1:
+    muteBtn.className = "fas fa-volume-high";
+    break;
+}
 
 const handlePlay = () => {
   if (video.paused) {
@@ -18,7 +30,7 @@ const handlePlay = () => {
   } else {
     video.pause();
   }
-  playBtn.innerText = video.paused ? "play" : "pause";
+  playBtn.className = video.paused ? "fas fa-play" : "fas fa-pause";
 };
 
 const handleMute = () => {
@@ -27,7 +39,7 @@ const handleMute = () => {
   } else {
     video.muted = true;
   }
-  muteBtn.innerText = video.muted ? "unMute" : "mute";
+  muteBtn.className = video.muted ? "fas fa-volume-low" : "fas fa-volume-xmark";
   volume.value = video.muted ? 0 : volumeValue;
 };
 
@@ -76,11 +88,25 @@ const handleFullScreen = () => {
   }
 };
 
+const handleMouseEnter = () => {
+  videoControls.style.display = "hidden";
+};
+
+const handleVolumeEnter = () => {
+  volume.style.display = "block";
+};
+const handleVolumeLeave = () => {
+  volume.style.display = "none";
+};
+
 playBtn.addEventListener("click", handlePlay);
+muteBtn.addEventListener("mouseenter", handleVolumeEnter);
+volume.addEventListener("mouseleave", handleVolumeLeave);
 muteBtn.addEventListener("click", handleMute);
 volume.addEventListener("input", handleVolume);
 video.addEventListener("loadedmetadata", handleLoadedMetaDataVideo);
 video.addEventListener("timeupdate", handleTimeUpdate);
 video.addEventListener("ended", handleEnded);
+video.addEventListener("mouseenter", handleMouseEnter);
 timeline.addEventListener("input", handleChangeTimeline);
 fullScreen.addEventListener("click", handleFullScreen);

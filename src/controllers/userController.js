@@ -220,7 +220,7 @@ export const postPassword = async (req, res) => {
 export const deleteUser = async (req, res) => {
   const { id } = req.params;
   await User.findByIdAndDelete(id);
-  req.session.loggedIn = false;
-  req.session.user = null;
+  // req.session.loggedIn = false;
+  // req.session.user = null;
   return res.status(201).redirect("/");
 };

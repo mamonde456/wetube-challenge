@@ -2,7 +2,8 @@ extends base
 include mixins/video
 
 block content 
-    each video in videos
-        +video(video)
-    else
-        p noting found.
+    div.home-wrap
+        each video in videos
+            +video(video)
+        else
+            p noting found.

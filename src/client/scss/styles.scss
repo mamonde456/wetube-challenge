@@ -1,0 +1,29 @@
+// Config
+
+@import "./config/_var.scss";
+@import "./config/_reset.scss";
+
+// Components
+@import "./components/header.scss";
+@import "./components/footer.scss";
+
+// Screen
+@import "./screen/home.scss";
+@import "./screen/watch.scss";
+
+// Default
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  font-family: "Noto Sans", sans-serif;
+  background-color: #f1f1f1;
+}
+
+main {
+  width: 100vw;
+  margin: 0 auto;
+}

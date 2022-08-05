@@ -1,51 +1,70 @@
 extends base
 
 block content 
-        div 
+        div.video-watch-wrap 
+
             div#videoContainer(data-id=video._id)
-                video(src="/"+video.fileUrl controls)
+                .video-background 
+                    video(src="/"+video.fileUrl)
                 div#videoControls
-                    span#play play
-                    span#mute mute
+                    i#play.fas.fa-play
+                    i#mute.fas.fa-volume-low
                     input#volume( type="range" step="0.1"  min="0" max="1")
                     p#time
-                        span#currentTime 00
-                        span : 
-                        span#maxTime 00
-                    input#timeline( type="range" step="1" min="0")
-                    span#fullScreen Full
+                        span#currentTime 00 : 00 : 00
+                        span | 
+                        span#maxTime 00 : 00 : 00
+                    input#timeline( type="range" min="0")
+                    i#fullScreen.fas.fa-expand
 
-            h3=video.title
-            p=video.overview
-            div 
-                each hashtag in video.hashtags
-                    span=hashtag
-            small=video.createdAt
-            br
-            small Uploaded by 
-                a(href=`/users/${video.owner._id}`)=video.owner.name
-            
-        if String(loggedInUser._id) === String(video.owner._id)
-            hr
-            p
-                a(href=`${video._id}/edit-video`) edit video &rarr; 
-            p
-                a(href=`${video._id}/delete`) delete video &rarr; 
-        if loggedIn
-            div 
-                form#txtForm
-                    textarea#txtBox( placeholder="write a comments..." name="comments" )
-                    button#txtBtn send
-        div#commentWrap
-            ul#commentList
-                each comment in video.comments.reverse()
-                    li.commentLi(data-commentId=comment.id)
-                        p=comment.name
-                        p=comment.text
-                            span.deleteBtn ❌
-                        small=comment.createdAt
+            div.video_info
+                if String(loggedInUser._id) === String(video.owner._id)
+                    .video-edit-wrap 
+                        p
+                            a(href=`${video._id}/edit-video`) edit video &rarr; 
+                        p
+                            a(href=`${video._id}/delete`) delete video &rarr; 
+                h3.video-title=video.title
+                p.video-overview=video.overview
+                div.video-hashtag 
+                    each hashtag in video.hashtags
+                        span=hashtag
+                small #{video.meta.views} #{views === 1 ? "view":"views"}
+                small.video-createdAt=video.createdAt
+                hr
+                div.video-owner
+                    a.avatar-wrap(href=`/users/${video.owner._id}`)
+                        div.avatar-img(style=`background-image:url(/${video.owner.avatarUrl}); background-size:cover; background-position:center;`)
+                    a.owner-name(href=`/users/${video.owner._id}`)=video.owner.name
+                hr
+                    
+                if loggedIn
+                    div.txt-wrap 
+                        form#txtForm
+                            div.txtAvatar(style=`background-image:url(/${video.owner.avatarUrl}); background-size:cover; background-position:center;`)
+                            textarea#txtBox( placeholder="write a comments..." name="comments" )
+                            button#txtBtn send
+                div#commentWrap
+                    ul#commentList
+                        each comment in video.comments.reverse()
+                            li.commentLi(data-commentId=comment.id)
+                                div.userWrap
+                                    p.txtAvatar(style=`background-image:url(/${video.owner.avatarUrl}); background-size:cover; background-position:center;`)
+                                    p.commentName=comment.name
+                                .commentTxtWrap    
+                                    p.commentText=comment.text
+                                    small.commentCreatedAt=comment.createdAt
+                                .btnWrap 
+                                    i.fas.fa-ellipsis-vertical.commentsBtnIcon
+                                    div.btnBox
+                                        p.editBtn
+                                            i.fas.fa-pen
+                                            span 수정
+                                        p.deleteBtn 
+                                            i.fas.fa-xmark 
+                                            span 삭제
                     
 block scripts
-    script(src="/assets/js/videoPlayer.js")
+    script(src="/static/js/videoPlayer.js")
     if loggedIn
-        script(src="/assets/js/videoComments.js")
+        script(src="/static/js/videoComments.js")

@@ -1,14 +1,14 @@
 mixin video(video)
 
-    div
-        h3 
-            a(href=`/videos/${video._id}`)=video.title
-        p=video.overview
-        ul 
-            each hashtag in video.hashtags
-                li=hashtag
-        small=video.createdAt
-        small  #{video.meta.views} #{video.meta.views === 1  ? "view" :"views"}
-        br
+    div.video-wrap
+        a(href=`/videos/${video._id}`)
+
+            div.thumbImg(style=`background-image:url(${video.thumbUrl}); background-size:cover; background-position:center;`)
+            div.video-title-wrap
+                div.avatarImg(style=`background-image:url(${video.owner.avatarUrl}); background-size:cover; background-position:center;`)
+                h3.video-title=video.title
+            p.video-name=video.owner.name
+            div.video-meta 
+                small.video-createdAt=video.createdAt
+                p #{video.meta.views} #{video.meta.views === 1  ? "view" :"views"}
         
-    hr
