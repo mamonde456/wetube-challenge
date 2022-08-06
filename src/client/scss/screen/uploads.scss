@@ -1,0 +1,80 @@
+#recordingBox {
+  width: 1200px;
+  height: 630px;
+  position: absolute;
+  left: 50%;
+  margin-left: -600px;
+  top: 100px;
+  background-color: #112031;
+  border: solid 1px #78787880;
+  border-radius: 10px;
+  padding: 20px;
+  display: none;
+  div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  #titleWrap {
+    padding: 30px 10px;
+    #recordingTitle {
+      font-size: 32px;
+      padding: 20px;
+      color: white;
+    }
+    #waitText {
+      color: white;
+      opacity: 0.2;
+      font-size: 12px;
+    }
+  }
+  video {
+    width: 800px;
+    height: 400px;
+    text-align: center;
+    background-color: black;
+  }
+  #videoCloseBtn {
+    position: absolute;
+    right: 30px;
+    top: 10px;
+    font-size: 30px;
+    padding: 10px;
+    color: #508889;
+    cursor: pointer;
+  }
+  #actionBtn {
+    width: 200px;
+    height: 50px;
+    color: $red;
+    border: solid 1px $red;
+    border-radius: 10px;
+  }
+}
+.margin {
+  padding-top: 100px !important;
+}
+label {
+  padding: 10px;
+  color: white;
+}
+input[type="file"]::file-selector-button {
+  width: 100px;
+  height: 100%;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.5);
+  margin-right: 10px;
+  background: #509c9d;
+}
+button {
+  width: 120px;
+  height: 50px;
+  border-radius: 10px;
+  font-size: 18px;
+  margin-top: 20px;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.5);
+  background-color: #0f3d3e;
+  color: white;
+  border: none;
+}

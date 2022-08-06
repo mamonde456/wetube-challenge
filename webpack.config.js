@@ -9,6 +9,7 @@ module.exports = {
     videoPlayer: BASE_URL + "videoPlayer.js",
     videoRecording: BASE_URL + "videoRecording.js",
     videoComments: BASE_URL + "videoComments.js",
+    header: BASE_URL + "header.js",
   },
   mode: "development",
   watch: true,

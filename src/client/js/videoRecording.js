@@ -1,6 +1,11 @@
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 const actionBtn = document.getElementById("actionBtn");
-const video = document.getElementById("video");
+const video = document.getElementById("videoBox");
+const closeBtn = document.getElementById("videoCloseBtn");
+const recordingBox = document.getElementById("recordingBox");
+const recordingBtn = document.getElementById("recordingBtn");
+const waitText = document.getElementById("waitText");
+const recordingTitle = document.getElementById("recordingTitle");
 
 let stream;
 let recorder;
@@ -98,10 +103,22 @@ const init = async () => {
       height: 576,
     },
   });
+  waitText.style.display = "none";
   video.srcObject = stream;
   video.play();
 };
 
-init();
+const handleOpen = (event) => {
+  event.preventDefault();
+  recordingBox.style.display = "block";
+
+  init();
+};
+
+const handleClose = () => {
+  recordingBox.style.display = "none";
+};
 
 actionBtn.addEventListener("click", handleStart);
+closeBtn.addEventListener("click", handleClose);
+recordingBtn.addEventListener("click", handleOpen);

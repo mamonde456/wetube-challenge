@@ -1,22 +1,37 @@
 header 
     nav 
-        i.fas.fa-bars.home-icon
+        i.fas.fa-bars#menuIcon
         ul#headerList
             li 
                 a(href="/")
+                    i.fas.fa-house-chimney
                     span home 
             if loggedIn 
                 li
                     a(href="/users/logout") 
+                        i.fas.fa-right-from-bracket
                         span logout
                 li 
-                    a(href=`/users/${loggedInUser._id}`) #{loggedInUser.name} profile
+                    a(href=`/users/${loggedInUser._id}`)
+                        i.fas.fa-house-chimney-user 
+                        span #{loggedInUser.name} profile
                 li 
-                    a(href="/videos/upload") uploads
+                    a(href="/videos/upload")
+                        i.fas.fa-upload 
+                        span upload
                 li 
-                    a(href="/search") search
+                    a(href="/search")
+                        i.fas.fa-magnifying-glass 
+                        span search
             if !loggedIn
                 li 
-                    a(href="/login") login 
+                    a(href="/login") 
+                        i.fas.fa-user 
+                        span login 
                 li 
-                    a(href="/join") join 
+                    a(href="/join") 
+                        i.fas.fa-user.plus 
+                        span join 
+    block scripts
+        script(src="/static/js/header.js")
+

@@ -3,9 +3,13 @@ extends base
 block content 
     if errorMessage 
         span=errorMessage
-    form(method="post")
-        input(placeholder="username", required, type="text", name="username") 
-        input(placeholder="password", required, type="text", name="password") 
-        input(type="submit", value="log in") 
-    hr
-    a(href="/users/github/start") github login &rarr;
+    #loginWrap.formWrap
+        h3.pageTitle=pageTitle
+        form(method="post")
+            input(placeholder="username", required, type="text", name="username") 
+            input(placeholder="password", required, type="text", name="password") 
+            input.formBtn(type="submit", value="log in") 
+        hr
+        a#githubLogin(href="/users/github/start")
+            i.fab.fa-github 
+            span github login &rarr;

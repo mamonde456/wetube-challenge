@@ -9,8 +9,9 @@ html(lang="en")
         link(rel="stylesheet" href="/static/css/styles.css" )
         title #{pageTitle} | wetube
     body 
-        //- include partials/header.pug
         main
+            include partials/top-menu.pug
+            include partials/header.pug
             block content
 
         include partials/footer.pug

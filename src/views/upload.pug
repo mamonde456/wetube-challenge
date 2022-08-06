@@ -1,19 +1,32 @@
 extends base
 
 block content
-    video#video(width=400, height=400)
-    button#actionBtn Start recording video
-    div
-        span=errorMessage
-    form( method="post" enctype="multipart/form-data") 
-        label(for="video") video upload
-        input(name="video" id="video" required type="file" accept="video/*")
-        label(for="thumb") Thumbnail upload
-        input(name="thumb" id="thumb" required type="file" accept="image/*")
-        input(placeholder="title" name="title" required maxlength="80")
-        input(placeholder="overview" name="overview" required minlength="20")
-        input(placeholder="hashtag" name="hashtags")
-        button save
+    if errorMessage
+        div#errorBox
+            div#errorMsgImg
+            span#errorTitle
+            span#errorText=errorMessage
+            i.fas.fa-xmark#errorBtn
+    #recordingBox
+        div
+            div#titleWrap
+                h3#recordingTitle Video Recording
+                p#waitText please wait for a moment.
+            video#videoBox
+            i.fas.fa-xmark#videoCloseBtn
+            button#actionBtn Start recording video
+    .videoWrap.margin
+        h3.pageTitle=pageTitle
+        form(method="post" enctype="multipart/form-data") 
+            input.formBtn#recordingBtn(type="submit" value="video Recoding")
+            label(for="video") video upload
+            input(name="video" id="video" required type="file" accept="video/*")
+            label(for="thumb") Thumbnail upload
+            input(name="thumb" id="thumb" required type="file" accept="image/*")
+            input(placeholder="title" name="title" required maxlength="80")
+            input(placeholder="overview" name="overview" required minlength="20")
+            input(placeholder="hashtag" name="hashtags")
+            input.formBtn(type="submit" value="Save")
 
 block scripts 
     script(src="/static/js/videoRecording.js")

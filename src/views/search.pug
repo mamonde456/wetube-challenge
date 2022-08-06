@@ -1,12 +1,14 @@
 extends base
-include mixins/video
+include mixins/search
 
 block content 
-    div
+    div.formWrap
         form(method="get") 
             input(placeholder="Write the word to search" type="text" required name="keyword")
-            button send
-    hr
-    div 
+            input.formBtn(type="submit" value="Send")
+        hr
+    div#searchWrap
         each video in videos
             +video(video)
+        else 
+            p#notingText video noting found.

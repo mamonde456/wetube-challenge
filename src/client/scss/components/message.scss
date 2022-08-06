@@ -1,0 +1,47 @@
+#errorBox {
+  width: 450px;
+  height: 180px;
+  background: #e2dcc8;
+  border-radius: 20px;
+  position: absolute;
+  left: 50%;
+  margin-left: -150px;
+  top: 50%;
+  margin-top: -300px;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.5);
+  #errorMsgImg {
+    width: 150px;
+    height: 150px;
+    background-image: url("/src/public/image/poly-3295856_640.png");
+    background-size: cover;
+    background-position: center;
+    border-radius: 75px;
+    position: absolute;
+    left: 30px;
+    top: -50px;
+  }
+  span {
+    padding: 20px;
+    color: #100f0f;
+    position: absolute;
+  }
+  span#errorTitle {
+    left: 180px;
+    top: 20px;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  span#errorText {
+    left: 180px;
+    top: 70px;
+    font-size: 14px;
+  }
+  #errorBtn {
+    padding: 10px;
+    font-size: 32px;
+    color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    right: 10px;
+    top: 0px;
+  }
+}
