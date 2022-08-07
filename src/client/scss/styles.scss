@@ -11,20 +11,24 @@
 @import "./components/input.scss";
 @import "./components/searchVideo.scss";
 @import "./components/mixins.scss";
+@import "./components/comments.scss";
 
 // Screen
 @import "./screen/home.scss";
 @import "./screen/watch.scss";
 @import "./screen/uploads.scss";
-@import "./screen/search.scss";
 @import "./screen/login.scss";
-@import "./screen/join.scss";
+@import "./screen/profile.scss";
 
 // Default
 
 a {
   text-decoration: none;
   color: inherit;
+}
+ul,
+li {
+  list-style: none;
 }
 
 body {
@@ -33,7 +37,8 @@ body {
 }
 
 main {
-  width: 100vw;
+  // width: 100vw;
+  // height: 100%;
   margin: 0 auto;
 }
 
@@ -42,11 +47,22 @@ main {
   padding: 10px;
   color: white;
   font-size: 42px;
-  padding-bottom: 100px;
+  padding-bottom: 90px;
 }
 .videoWrap {
   padding-top: 150px;
   width: 1200px;
   height: 100%;
   margin: 0 auto;
+  margin-bottom: 300px;
+}
+
+.overlay {
+  width: 100vw;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  // background: black;
 }

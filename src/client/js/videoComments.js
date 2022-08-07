@@ -6,27 +6,77 @@ const txtBox = document.getElementById("txtBox");
 const commentWrap = document.getElementById("commentWrap");
 const commentList = document.getElementById("commentList");
 const deleteBtn = document.getElementsByClassName("deleteBtn");
+const btnBox = document.querySelectorAll(".btnBox");
+const commentsBtnIcon = document.querySelectorAll(".commentsBtnIcon");
+const overlay = document.querySelectorAll(".overlay");
 
-const createdComment = (text, name, newCommentId, createdAt) => {
+let isClose = true;
+
+const createdComment = (text, name, newCommentId, createdAt, avatarUrl) => {
   const li = document.createElement("li");
-  li.className = "commentLi";
+  li.className = "commentLi watchComment";
   li.dataset.id = newCommentId;
+  const avatar = document.createElement("p");
+  avatar.style.backgroundImage = `url(/${avatarUrl})`;
+  avatar.style.backgroundSize = "cover";
+  avatar.style.backgroundPosition = "center";
+  avatar.className = "txtAvatar";
   const userName = document.createElement("p");
+  userName.className = "commentName";
   userName.innerText = name;
   const txt = document.createElement("p");
+  txt.className = "commentText";
   txt.innerText = text;
   const time = document.createElement("small");
+  time.className = "commentCreatedAt";
   time.innerText = createdAt;
-  const removeBtn = document.createElement("span");
-  removeBtn.innerText = "❌";
+  const editBtn = document.createElement("p");
+  editBtn.className = "editBtn";
+  const removeBtn = document.createElement("p");
   removeBtn.className = "deleteBtn";
-  removeBtn.addEventListener("click", handleDelete);
+  //
+  const userWrap = document.createElement("div");
+  userWrap.className = "userWrap";
+  const commentTxtWrap = document.createElement("div");
+  commentTxtWrap.className = "commentTxtWrap";
+  const btnWrap = document.createElement("div");
+  btnWrap.className = "btnWrap";
+  const btnBox = document.createElement("div");
+  btnBox.className = "btnBox";
+  const i = document.createElement("i");
+  i.className = "fas fa-ellipsis-vertical commentsBtnIcon";
+  const pen = document.createElement("i");
+  pen.className = "fas fa-pen";
+  const xmark = document.createElement("i");
+  xmark.className = "fas fa-xmark";
+  const span = document.createElement("span");
+  span.innerText = "수정";
+  const span2 = document.createElement("span");
+  span2.innerText = "삭제";
+  const hr = document.createElement("hr");
 
-  li.appendChild(userName);
-  li.appendChild(txt);
-  txt.appendChild(removeBtn);
-  li.appendChild(time);
   commentList.prepend(li);
+
+  li.appendChild(avatar);
+  li.appendChild(userWrap);
+  li.appendChild(btnWrap);
+
+  userWrap.appendChild(userName);
+  userWrap.appendChild(commentTxtWrap);
+  commentTxtWrap.appendChild(txt);
+  commentTxtWrap.appendChild(time);
+  btnWrap.appendChild(i);
+  btnWrap.appendChild(btnBox);
+  btnBox.appendChild(editBtn);
+  btnBox.appendChild(hr);
+  btnBox.appendChild(removeBtn);
+  editBtn.appendChild(pen);
+  editBtn.appendChild(span);
+  removeBtn.appendChild(xmark);
+  removeBtn.appendChild(span2);
+
+  i.addEventListener("click", handleBtnClick);
+  removeBtn.addEventListener("click", handleDelete);
 };
 
 const handleSubmit = async (event) => {
@@ -43,15 +93,16 @@ const handleSubmit = async (event) => {
     }),
   });
   txtBox.value = "";
-  const { name, newCommentId, createdAt } = await response.json();
+  const { name, newCommentId, createdAt, avatarUrl } = await response.json();
   if (response.status === 201) {
-    createdComment(text, name, newCommentId, createdAt);
+    createdComment(text, name, newCommentId, createdAt, avatarUrl);
   }
 };
 
 const handleDelete = async (event) => {
   const { id } = videoContainer.dataset;
-  const li = event.target.parentElement.parentElement;
+  const li =
+    event.target.parentElement.parentElement.parentElement.parentElement;
   const newCommentId = li.dataset.commentid;
   const { status } = await fetch(`/api/videos/${id}/comments`, {
     method: "delete",
@@ -66,10 +117,27 @@ const handleDelete = async (event) => {
     li.remove();
   }
 };
+const handleEditBtnClose = () => {
+  for (const item of btnBox) {
+    item.style.display = "none";
+  }
+  isClose = true;
+};
+
+const handleBtnClick = (event) => {
+  isClose = false;
+  event.target.nextElementSibling.style.display = "flex";
+};
 
 if (form) {
   form.addEventListener("submit", handleSubmit);
-  for (const item of deleteBtn) {
-    item.addEventListener("click", handleDelete);
-  }
+}
+for (const item of deleteBtn) {
+  item.addEventListener("click", handleDelete);
+}
+for (const item of commentsBtnIcon) {
+  item.addEventListener("click", handleBtnClick);
+}
+for (const item of overlay) {
+  item.addEventListener("click", handleEditBtnClose);
 }

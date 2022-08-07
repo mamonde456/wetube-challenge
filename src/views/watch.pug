@@ -1,11 +1,10 @@
 extends base
+include mixins/comment
 
 block content 
-        div.video-watch-wrap 
-
+        div.video-watch-wrap
             div#videoContainer(data-id=video._id)
-                .video-background 
-                    video(src="/"+video.fileUrl)
+                video(src="/"+video.fileUrl)
                 div#videoControls
                     i#play.fas.fa-play
                     i#mute.fas.fa-volume-low
@@ -25,44 +24,32 @@ block content
                         p
                             a(href=`${video._id}/delete`) delete video &rarr; 
                 h3.video-title=video.title
-                p.video-overview=video.overview
-                div.video-hashtag 
-                    each hashtag in video.hashtags
-                        span=hashtag
-                small #{video.meta.views} #{views === 1 ? "view":"views"}
+                small.videoViews #{video.meta.views} #{views === 1 ? "view":"views"}
+                span ·
                 small.video-createdAt=video.createdAt
-                hr
+                hr.line
                 div.video-owner
-                    a.avatar-wrap(href=`/users/${video.owner._id}`)
-                        div.avatar-img(style=`background-image:url(/${video.owner.avatarUrl}); background-size:cover; background-position:center;`)
-                    a.owner-name(href=`/users/${video.owner._id}`)=video.owner.name
-                hr
-                    
+                    div.avatar-wrap
+                        a(href=`/users/${video.owner._id}`)
+                            div.avatar-img(style=`background-image:url(/${video.owner.avatarUrl}); background-size:cover; background-position:center;`)
+                        a.owner-name(href=`/users/${video.owner._id}`)=video.owner.name
+                    div.videoIntro
+                        p.video-overview=video.overview
+                        div.video-hashtag 
+                            each hashtag in video.hashtags
+                                span=hashtag
+                hr.line
                 if loggedIn
                     div.txt-wrap 
+                        div.txtAvatar(style=`background-image:url(/${video.owner.avatarUrl}); background-size:cover; background-position:center;`)
                         form#txtForm
-                            div.txtAvatar(style=`background-image:url(/${video.owner.avatarUrl}); background-size:cover; background-position:center;`)
                             textarea#txtBox( placeholder="write a comments..." name="comments" )
                             button#txtBtn send
                 div#commentWrap
                     ul#commentList
                         each comment in video.comments.reverse()
-                            li.commentLi(data-commentId=comment.id)
-                                div.userWrap
-                                    p.txtAvatar(style=`background-image:url(/${video.owner.avatarUrl}); background-size:cover; background-position:center;`)
-                                    p.commentName=comment.name
-                                .commentTxtWrap    
-                                    p.commentText=comment.text
-                                    small.commentCreatedAt=comment.createdAt
-                                .btnWrap 
-                                    i.fas.fa-ellipsis-vertical.commentsBtnIcon
-                                    div.btnBox
-                                        p.editBtn
-                                            i.fas.fa-pen
-                                            span 수정
-                                        p.deleteBtn 
-                                            i.fas.fa-xmark 
-                                            span 삭제
+                            +comment(comment)
+                    span.overlay
                     
 block scripts
     script(src="/static/js/videoPlayer.js")

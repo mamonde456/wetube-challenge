@@ -9,7 +9,7 @@ export const getJoin = (req, res) => {
 };
 export const postJoin = async (req, res) => {
   const {
-    body: { username, name, password, password2, email },
+    body: { username, name, password, password2, email, intro },
   } = req;
   const userExists = await User.exists({ $or: [{ username }, { email }] });
   if (userExists) {
@@ -26,6 +26,7 @@ export const postJoin = async (req, res) => {
     name,
     password,
     email,
+    intro,
   });
   return res.redirect("/login");
 };
@@ -135,19 +136,21 @@ export const logout = (req, res) => {
 
 export const profile = async (req, res) => {
   const { id } = req.params;
-  const user = await User.findById(id).populate("videos");
+  const user = await User.findById(id).populate("videos").populate("comments");
   return res.render("profile", { pageTitle: user.name, user });
 };
 
-export const getEditProfile = (req, res) => {
-  return res.render("edit-profile", { pageTitle: "edit profile" });
+export const getEditProfile = async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id);
+  return res.render("edit-profile", { pageTitle: `Edit ${user.name} Profile` });
 };
 export const postEditProfile = async (req, res) => {
   const {
     session: {
       user: { _id, avatarUrl },
     },
-    body: { name, username, email },
+    body: { name, username, email, intro },
     file,
   } = req;
 
@@ -178,6 +181,7 @@ export const postEditProfile = async (req, res) => {
       name,
       username,
       email,
+      intro,
     },
     { new: true }
   );

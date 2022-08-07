@@ -1,5 +1,22 @@
 mixin comment(comment)
-    li
-        p=comment.owner
-        p=comment.text
-        small=comment.createdAt
+    li.commentLi.watchComment(data-commentId=comment.id)
+        if video
+            p.txtAvatar(style=`background-image:url(/${loggedInUser.avatarUrl}); background-size:cover; background-position:center;`)
+        else
+            p.txtAvatar(style=`background-image:url(/${user.avatarUrl}); background-size:cover; background-position:center;`)
+        div.userWrap
+            p.commentName=comment.name
+            .commentTxtWrap    
+                p.commentText=comment.text
+                small.commentCreatedAt=comment.createdAt
+        .btnWrap 
+            i.fas.fa-ellipsis-vertical.commentsBtnIcon
+            if String(comment.owner) === String(loggedInUser._id)
+                div.btnBox
+                    p.editBtn
+                        i.fas.fa-pen
+                        span 수정
+                    hr
+                    p.deleteBtn 
+                        i.fas.fa-xmark 
+                        span 삭제

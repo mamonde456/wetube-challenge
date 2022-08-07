@@ -25,7 +25,7 @@ userRouter
   .get(getEditProfile)
   .post(uploadsAvatar.single("avatar"), postEditProfile);
 userRouter
-  .route("/change-password")
+  .route("/:id([0-9a-f]{24})/change-password")
   .all(protectMiddleware)
   .get(getPassword)
   .post(postPassword);

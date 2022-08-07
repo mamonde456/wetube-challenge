@@ -1,0 +1,74 @@
+.commentLi {
+  position: relative;
+  width: 500px;
+  padding: 10px;
+  display: flex;
+}
+.txtAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  margin-right: 20px;
+  background: white;
+}
+.userWrap {
+  display: flex;
+  flex-direction: column;
+  .commentName {
+    color: white;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+}
+.commentTxtWrap {
+  height: 50px;
+  color: white;
+  font-size: 18px;
+  .commentCreatedAt {
+    font-size: 12px;
+    opacity: 0.5;
+  }
+}
+.btnWrap {
+  padding: 10px;
+  position: absolute;
+  right: 0px;
+  top: 10px;
+  color: white;
+  i {
+    margin-right: 5px;
+    font-size: 18px;
+  }
+  .commentsBtnIcon {
+    padding: 10px;
+    cursor: pointer;
+  }
+  p {
+    cursor: pointer;
+  }
+  .btnBox {
+    z-index: 2;
+    position: absolute;
+    right: -95px;
+    top: 0px;
+    padding: 20px;
+    background: rgb(109, 109, 109);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    hr {
+      width: 100%;
+      opacity: 0.5;
+    }
+
+    .editBtn {
+      margin-bottom: 5px;
+    }
+    .deleteBtn {
+      margin-top: 5px;
+    }
+  }
+}

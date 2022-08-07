@@ -44,7 +44,9 @@ export const postUpload = async (req, res) => {
 };
 
 export const watch = async (req, res) => {
-  const { id } = req.params;
+  const {
+    params: { id },
+  } = req;
   const video = await Video.findById(id).populate("owner").populate("comments");
   if (!video) {
     return res.status(404).render("404", {
@@ -139,6 +141,7 @@ export const commentsApi = async (req, res) => {
   user.save();
 
   return res.status(201).json({
+    avatarUrl: user.avatarUrl,
     newCommentId: comment._id,
     name: comment.name,
     createdAt: comment.createdAt,

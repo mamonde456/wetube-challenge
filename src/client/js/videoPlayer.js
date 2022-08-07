@@ -1,28 +1,16 @@
 const videoContainer = document.getElementById("videoContainer");
-const video = videoContainer.querySelector("video");
-const videoControls = videoContainer.querySelector("#videoContainer");
-const playBtn = videoContainer.querySelector("#play");
-const muteBtn = videoContainer.querySelector("#mute");
-const volume = videoContainer.querySelector("#volume");
-const timeline = videoContainer.querySelector("#timeline");
-const minTime = videoContainer.querySelector("#currentTime");
-const maxTime = videoContainer.querySelector("#maxTime");
-const fullScreen = videoContainer.querySelector("#fullScreen");
+const video = document.querySelector("video");
+const videoControls = document.querySelector("#videoControls");
+const playBtn = document.querySelector("#play");
+const muteBtn = document.querySelector("#mute");
+const volume = document.querySelector("#volume");
+const timeline = document.querySelector("#timeline");
+const minTime = document.querySelector("#currentTime");
+const maxTime = document.querySelector("#maxTime");
+const fullScreen = document.querySelector("#fullScreen");
 
-video.volume = 0.5;
 timeline.value = 0;
 let volumeValue;
-switch (volumeValue) {
-  case 0:
-    muteBtn.className = "fas fa-volume-xmark";
-    break;
-  case 0.5:
-    muteBtn.className = "fas fa-volume-low";
-    break;
-  case 1:
-    muteBtn.className = "fas fa-volume-high";
-    break;
-}
 
 const handlePlay = () => {
   if (video.paused) {
@@ -39,7 +27,7 @@ const handleMute = () => {
   } else {
     video.muted = true;
   }
-  muteBtn.className = video.muted ? "fas fa-volume-low" : "fas fa-volume-xmark";
+  muteBtn.className = video.muted ? "fas fa-volume-xmark" : "fas fa-volume-low";
   volume.value = video.muted ? 0 : volumeValue;
 };
 
@@ -80,10 +68,10 @@ const handleEnded = () => {
 
 const handleFullScreen = () => {
   if (document.fullscreenElement) {
-    fullScreen.innerText = "full";
+    fullScreen.className = "fas fa-expand";
     document.exitFullscreen();
   } else {
-    fullScreen.innerText = "exit";
+    fullScreen.className = "fas fa-compress";
     videoContainer.requestFullscreen();
   }
 };

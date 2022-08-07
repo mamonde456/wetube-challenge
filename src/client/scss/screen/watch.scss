@@ -1,67 +1,61 @@
 .video-watch-wrap {
-  width: 100vw;
-  //   padding: 30px;
+  width: 1200px;
+  position: absolute;
+  left: 50%;
+  margin-left: -600px;
+  // background: red;
+  padding-top: 80px;
 }
 #videoContainer {
-  width: 100%;
   position: relative;
-  .video-background {
+  video {
     width: 100%;
-    background: black;
-    video {
-      width: 1200px;
-      position: relative;
-      left: 50%;
-      margin-left: -600px;
-    }
   }
-  #videoControls {
-    color: white;
-    width: 1200px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 1) 50%
-    );
-    position: absolute;
-    left: 50%;
-    margin-left: -600px;
-    bottom: 0px;
-    #play,
-    #mute,
-    #fullScreen {
-      padding: 10px;
-      font-size: 20px;
-    }
-    #volume {
-      display: none;
-      -webkit-transition: width 0.5s;
-    }
-    #time {
-      padding: 10px;
-    }
+}
+#videoControls {
+  color: white;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 50%
+  );
+  position: absolute;
+  bottom: 0px;
+  #play,
+  #mute,
+  #fullScreen {
+    padding: 10px;
+    font-size: 20px;
+  }
+  #volume {
+    display: none;
+    -webkit-transition: width 0.5s;
+  }
+  #time {
+    padding: 10px;
+  }
 
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 15px;
-      height: 15px;
-      border-radius: 10px;
-      background: #0f3d3e;
-    }
-    input[type="range"] {
-      -webkit-appearance: none;
-      width: 120px;
-      height: 8px;
-      border: solid 1px #0f3d3e;
-      border-radius: 8px;
-    }
-    #timeline {
-      width: 600px;
-    }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 10px;
+    background: #0f3d3e;
+  }
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 120px;
+    height: 8px;
+    border: solid 1px #0f3d3e;
+    border-radius: 8px;
+  }
+  #timeline {
+    width: 600px;
   }
 }
 
@@ -69,6 +63,7 @@
   width: 1200px;
   margin: 0 auto;
   position: relative;
+  color: white;
   .video-edit-wrap {
     width: 300px;
     display: flex;
@@ -82,13 +77,17 @@
 
   .video-title {
     width: 100%;
-    font-size: 26px;
-    font-weight: 500;
+    font-size: 32px;
+    font-weight: 700;
     padding: 10px;
   }
   .video-overview {
     width: 100%;
+    padding: 0px 10px;
+  }
+  .videoViews {
     padding: 10px;
+    opacity: 0.5;
   }
   .video-hashtag {
     padding: 10px;
@@ -102,138 +101,70 @@
     padding: 10px;
     opacity: 0.5;
   }
+}
 
-  div.video-owner {
-    width: 100%;
+.line {
+  background-color: black;
+  height: 1px;
+  border: 0px;
+  opacity: 0.3;
+}
+
+div.video-owner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0px;
+  .avatar-wrap {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
+    margin-bottom: 20px;
     .owner-name {
       font-size: 22px;
     }
-    a {
-      width: 60px;
-      display: block;
-      .avatar-img {
-        width: 60px;
-        height: 60px;
-        border-radius: 30px;
-        background: red;
-      }
-    }
   }
+}
+div.videoIntro {
+  margin-left: 70px;
 }
 
 div.txt-wrap {
   width: 100%;
-  #txtForm {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  .txtAvatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    margin-right: 10px;
+  }
+  form {
     width: 100%;
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    // justify-content: center;
-
-    textarea#txtBox {
-      resize: none;
-      border: none;
-      border-bottom: solid 1px #100f0f;
-      width: 80%;
-      background: none;
-      text-indent: 10px;
-      margin-right: 10px;
-    }
-    textarea#txtBox:focus {
-      border-bottom: solid 2px black;
+    position: relative;
+  }
+  #txtBox {
+    width: 95%;
+    border: none;
+    background: none;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.3);
+    resize: none;
+    // padding: 10px;
+    text-indent: 10px;
+    color: white;
+    &:focus {
       outline: none;
-    }
-    #txtBtn {
-      width: 100px;
-      height: 40px;
-      border: none;
-      background-color: #0f3d3e;
-      border-radius: 5px;
-      color: white;
-      font-size: 15px;
+      border-bottom: solid 2px rgba(255, 255, 255, 0.5);
     }
   }
-}
-.txtAvatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  margin-right: 20px;
-
-  //   background: red;
-}
-div#commentWrap {
-  padding: 20px;
-  ul#commentList {
-    display: flex;
-    align-items: center;
-    li {
-      width: 100%;
-      position: relative;
-      div.userWrap {
-        display: flex;
-        align-items: center;
-      }
-      &:hover {
-        .commentsBtnIcon {
-          display: block;
-        }
-      }
-      .commentsBtnIcon {
-        display: none;
-        position: absolute;
-        right: 10px;
-        top: 5px;
-        font-size: 20px;
-        cursor: pointer;
-      }
-      div.btnBox {
-        width: 100px;
-        height: 100px;
-        padding: 10px;
-        position: absolute;
-        right: -120px;
-        top: 5px;
-        background-color: #f1f1f1;
-        border-radius: 5px;
-        border: solid 1px #e2dcc8;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        display: none;
-        p {
-          padding: 15px 10px;
-          font-size: 20px;
-          i {
-            margin-right: 10px;
-          }
-          i.fa-xmark {
-            font-size: 25px;
-          }
-        }
-      }
-    }
-
-    p.commentName {
-      font-size: 18px;
-      padding: 10px;
-      font-weight: 700;
-    }
-    .commentTxtWrap {
-      padding: 10px 60px;
-    }
-    p.commentText {
-      padding: 5px 10px;
-    }
-
-    small.commentCreatedAt {
-      padding: 5px 10px;
-      opacity: 0.5;
-      font-size: 12px;
-    }
+  #txtBtn {
+    position: absolute;
+    right: 30px;
+    bottom: -60px;
   }
+}
+
+.watchComment {
+  width: 100%;
 }

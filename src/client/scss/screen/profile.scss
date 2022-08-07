@@ -1,0 +1,99 @@
+.profileTitle {
+  font-size: 28px;
+  color: white;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+.paddingBottom {
+  padding-bottom: 50px !important;
+  font-weight: 700;
+}
+#profileWrap {
+  width: 600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  margin-bottom: 100px;
+  border-radius: 10px;
+  p {
+    padding: 10px;
+  }
+}
+#profileImg {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+}
+#profileName {
+  padding-bottom: 0px !important;
+  font-size: 24px;
+}
+#profileUserId {
+  opacity: 0.3;
+}
+#profileIntro {
+  height: 100px;
+}
+#userCreatedAt {
+  opacity: 0.3;
+}
+#userEditBtn {
+  opacity: 0.8;
+  i {
+    font-size: 18px;
+    padding: 10px;
+  }
+  span {
+    padding: 10px 0px;
+  }
+}
+#userVideoWrap {
+  padding-bottom: 30px;
+}
+
+#commentsWrap {
+  padding-bottom: 30px;
+  ul {
+    padding: 10px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0px 50px;
+  }
+}
+.avatar-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+}
+
+//edit
+
+#avatarEditImg {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  left: 550px;
+  border-radius: 50px;
+}
+#editProfile {
+  width: 500px;
+  margin: 0 auto;
+}
+
+#formHr {
+  width: 100%;
+}
+.changeWrap {
+  display: flex;
+  justify-content: center;
+  p {
+    padding: 10px;
+    color: white;
+  }
+}

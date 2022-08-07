@@ -3,7 +3,7 @@ mixin video(video)
     div.video-wrap
         a(href=`/videos/${video._id}`)
 
-            div.thumbImg(style=`background-image:url(${video.thumbUrl}); background-size:cover; background-position:center;`)
+            div.thumbImg(style=`background-image:url(/${video.thumbUrl}); background-size:cover; background-position:center;`)
             div.video-title-wrap
                 div.avatarImg(style=`background-image:url(${video.owner.avatarUrl}); background-size:cover; background-position:center;`)
                 h3.video-title=video.title
