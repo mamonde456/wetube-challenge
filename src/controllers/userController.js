@@ -177,7 +177,7 @@ export const postEditProfile = async (req, res) => {
   const newUser = await User.findOneAndUpdate(
     _id,
     {
-      avatarUrl: file ? file.path : avatarUrl,
+      avatarUrl: file ? file.location : avatarUrl,
       name,
       username,
       email,
