@@ -1,5 +1,5 @@
 import User from "../models/User";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import session from "express-session";
 import fs from "fs";
 import fetch from "cross-fetch";
