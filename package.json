@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/mamonde456/wetube-challenge#readme",
   "dependencies": {
-    "@babel/plugin-transform-runtime": "^7.18.10",
     "@ffmpeg/core": "^0.8.5",
     "@ffmpeg/ffmpeg": "^0.9.7",
     "bcrypt": "^5.0.1",
@@ -40,6 +39,7 @@
     "webpack": "^5.74.0"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.18.10",
     "@babel/cli": "^7.18.10",
     "@babel/core": "^7.18.5",
     "@babel/node": "^7.18.5",
