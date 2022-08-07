@@ -6,7 +6,7 @@ block content
     div.videoWrap.clickWrap
         h3.pageTitle.paddingBottom Profile
         #profileWrap 
-            div#profileImg(style=`background-image:url(/${user.avatarUrl}); background-size:cover; background-position:center;`)
+            div#profileImg(style=`background-image:url(${user.avatarUrl}); background-size:cover; background-position:center;`)
             p#profileName=user.name
             p#profileUserId @#{user.username}
             p#profileIntro=user.intro

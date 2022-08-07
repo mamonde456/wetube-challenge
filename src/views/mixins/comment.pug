@@ -1,9 +1,9 @@
 mixin comment(comment)
     li.commentLi.watchComment(data-commentId=comment.id)
         if video
-            p.txtAvatar(style=`background-image:url(/${loggedInUser.avatarUrl}); background-size:cover; background-position:center;`)
+            p.txtAvatar(style=`background-image:url(${loggedInUser.avatarUrl}); background-size:cover; background-position:center;`)
         else
-            p.txtAvatar(style=`background-image:url(/${user.avatarUrl}); background-size:cover; background-position:center;`)
+            p.txtAvatar(style=`background-image:url(${user.avatarUrl}); background-size:cover; background-position:center;`)
         div.userWrap
             p.commentName=comment.name
             .commentTxtWrap    
