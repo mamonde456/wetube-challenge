@@ -12,6 +12,9 @@ html(lang="en")
         main
             include partials/top-menu.pug
             include partials/header.pug
+            include mixins/error-msg
+                each errorMsg in errorMessage
+                    +errorMsg(errorMsg)
             block content
 
             include partials/footer.pug

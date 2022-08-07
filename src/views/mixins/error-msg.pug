@@ -1,0 +1,8 @@
+mixin errorMsg(errorMsg)    
+    
+    if errorMsg
+        div#errorBox
+            div#errorMsgImg
+            span#errorTitle
+            span#errorText=errorMsg
+            i.fas.fa-xmark#errorBtn
