@@ -2,5 +2,5 @@
 .env
 /uploads
 /assets
-/src/public
+# /src/public
 /build
