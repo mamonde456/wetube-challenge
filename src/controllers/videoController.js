@@ -21,11 +21,11 @@ export const postUpload = async (req, res) => {
     body: { title, overview, hashtags },
     files: { video, thumb },
   } = req;
-
+  const isHeroku = process.env.NODE_ENV === "production";
   try {
     const newVideo = await Video.create({
-      fileUrl: video[0].location,
-      thumbUrl: thumb[0].location,
+      fileUrl: isHeroku ? video[0].location : video[0].path,
+      thumbUrl: isHeroku ? thumb[0].location : thumb[0].path,
       title,
       overview,
       owner: _id,
@@ -73,9 +73,10 @@ export const postEdit = async (req, res) => {
     files: { video, thumb },
   } = req;
   const { id } = req.params;
+  const isHeroku = process.env.NODE_ENV === "production";
   await Video.findByIdAndUpdate(id, {
-    fileUrl: video ? video[0].path : fileUrl,
-    thumbUrl: thumb ? thumb[0].path : thumb,
+    fileUrl: isHeroku ? video[0].location : video[0].path,
+    thumbUrl: isHeroku ? thumb[0].location : thumb[0].path,
     title,
     overview,
     hashtags: Video.formatHashtags(hashtags),
