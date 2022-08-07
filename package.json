@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/mamonde456/wetube-challenge#readme",
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.18.10",
     "@ffmpeg/core": "^0.8.5",
     "@ffmpeg/ffmpeg": "^0.9.7",
     "bcrypt": "^5.0.1",
@@ -35,8 +36,8 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "pug": "^3.0.2",
-    "webpack": "^5.74.0",
-    "regenerator-runtime": "^0.13.9"
+    "regenerator-runtime": "^0.13.9",
+    "webpack": "^5.74.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.18.10",
