@@ -1,5 +1,5 @@
 mixin comment(comment)
-    li.commentLi.watchComment(data-commentId=comment.id)
+    li.commentLi.watchComment(data-commentId=comment.id, data-commentVideoId=comment.video)
         if video
             p.txtAvatar(style=`background-image:url(${loggedInUser.avatarUrl}); background-size:cover; background-position:center;`)
         else
@@ -9,9 +9,9 @@ mixin comment(comment)
             .commentTxtWrap    
                 p.commentText=comment.text
                 small.commentCreatedAt=comment.createdAt
-        .btnWrap 
-            i.fas.fa-ellipsis-vertical.commentsBtnIcon
-            if String(comment.owner) === String(loggedInUser._id)
+        if String(comment.owner) === String(loggedInUser._id)
+            .btnWrap 
+                i.fas.fa-ellipsis-vertical.commentsBtnIcon
                 div.btnBox
                     p.editBtn
                         i.fas.fa-pen

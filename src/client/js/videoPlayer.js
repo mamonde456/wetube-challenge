@@ -9,7 +9,6 @@ const minTime = document.querySelector("#currentTime");
 const maxTime = document.querySelector("#maxTime");
 const fullScreen = document.querySelector("#fullScreen");
 
-timeline.value = 0;
 let volumeValue;
 
 const handlePlay = () => {
@@ -61,7 +60,7 @@ const handleChangeTimeline = (event) => {
 
 const handleEnded = () => {
   const { id } = videoContainer.dataset;
-  fetch(`/videos/${id}/views`, {
+  fetch(`/api/videos/${id}/views`, {
     method: "post",
   });
 };
@@ -69,9 +68,11 @@ const handleEnded = () => {
 const handleFullScreen = () => {
   if (document.fullscreenElement) {
     fullScreen.className = "fas fa-expand";
+    video.style.height = "720px";
     document.exitFullscreen();
   } else {
     fullScreen.className = "fas fa-compress";
+    video.style.height = "100%";
     videoContainer.requestFullscreen();
   }
 };
@@ -87,6 +88,14 @@ const handleVolumeLeave = () => {
   volume.style.display = "none";
 };
 
+const handleKeyDown = (event) => {
+  if (event.keyCode === 32) {
+    handlePlay();
+  } else if (event.keyCode === 70) {
+    handleFullScreen();
+  }
+};
+
 playBtn.addEventListener("click", handlePlay);
 muteBtn.addEventListener("mouseenter", handleVolumeEnter);
 volume.addEventListener("mouseleave", handleVolumeLeave);
@@ -98,3 +107,4 @@ video.addEventListener("ended", handleEnded);
 video.addEventListener("mouseenter", handleMouseEnter);
 timeline.addEventListener("input", handleChangeTimeline);
 fullScreen.addEventListener("click", handleFullScreen);
+window.addEventListener("keydown", handleKeyDown);

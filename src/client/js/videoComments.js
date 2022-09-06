@@ -3,14 +3,14 @@ import { async } from "regenerator-runtime";
 const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("txtForm");
 const txtBox = document.getElementById("txtBox");
+const txtBtn = document.getElementById("txtBtn");
 const commentWrap = document.getElementById("commentWrap");
 const commentList = document.getElementById("commentList");
 const deleteBtn = document.getElementsByClassName("deleteBtn");
 const btnBox = document.querySelectorAll(".btnBox");
 const commentsBtnIcon = document.querySelectorAll(".commentsBtnIcon");
-const overlay = document.querySelectorAll(".overlay");
 
-let isClose = true;
+let isClose = false;
 
 const createdComment = (text, name, newCommentId, createdAt, avatarUrl) => {
   const li = document.createElement("li");
@@ -100,37 +100,55 @@ const handleSubmit = async (event) => {
 };
 
 const handleDelete = async (event) => {
-  const { id } = videoContainer.dataset;
-  const li =
-    event.target.parentElement.parentElement.parentElement.parentElement;
+  let id;
+  if (videoContainer) {
+    id = videoContainer.dataset.id;
+  }
+  const li = event.currentTarget.parentElement.parentElement.parentElement;
   const newCommentId = li.dataset.commentid;
-  const { status } = await fetch(`/api/videos/${id}/comments`, {
-    method: "delete",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      newCommentId,
-    }),
-  });
+  const commentVideoId = li.dataset.commentvideoid;
+  const { status } = await fetch(
+    `/api/videos/${id ? id : commentVideoId}/comments`,
+    {
+      method: "delete",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        newCommentId,
+      }),
+    }
+  );
   if (status === 201) {
     li.remove();
   }
 };
 const handleEditBtnClose = () => {
-  for (const item of btnBox) {
-    item.style.display = "none";
+  if (isClose) {
+    isClose = false;
+    for (const item of btnBox) {
+      item.style.display = "none";
+    }
   }
-  isClose = true;
 };
 
-const handleBtnClick = (event) => {
-  isClose = false;
-  event.target.nextElementSibling.style.display = "flex";
+const handleBtnClick = async (event) => {
+  event.stopPropagation();
+  isClose = true;
+  event.currentTarget.nextElementSibling.style.display = "flex";
 };
 
 if (form) {
   form.addEventListener("submit", handleSubmit);
+  txtBox.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+      if (event.target.value.trim() == "") return;
+      txtBtn.click();
+    }
+  });
+  txtBox.addEventListener("click", function () {
+    txtBtn.style.opacity = 1;
+  });
 }
 for (const item of deleteBtn) {
   item.addEventListener("click", handleDelete);
@@ -138,6 +156,5 @@ for (const item of deleteBtn) {
 for (const item of commentsBtnIcon) {
   item.addEventListener("click", handleBtnClick);
 }
-for (const item of overlay) {
-  item.addEventListener("click", handleEditBtnClose);
-}
+
+document.body.addEventListener("click", handleEditBtnClose);

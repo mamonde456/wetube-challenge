@@ -15,17 +15,17 @@ block content
             a#userEditBtn(href=`${user._id}/edit-profile`)
                 i.fas.fa-user-pen 
                 span edit profile &rarr;
+        h3.profileTitle videos
         div#userVideoWrap
-            h3.profileTitle videos
             if user.videos 
-                each video in user.videos
+                each video in user.videos.reverse()
                     +video(video)
             else 
                 p.notingText video noting found.
         div#commentsWrap
             h3.profileTitle Comments
             ul
-                each comment in user.comments
+                each comment in user.comments.reverse()
                     +comment(comment)
 
 block scripts 

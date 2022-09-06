@@ -1,4 +1,5 @@
 import User from "../models/User";
+import Comment from "../models/Comment";
 import bcrypt from "bcrypt";
 import session from "express-session";
 import fs from "fs";
@@ -137,7 +138,11 @@ export const logout = (req, res) => {
 export const profile = async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id).populate("videos").populate("comments");
-  return res.render("profile", { pageTitle: user.name, user });
+
+  return res.render("profile", {
+    pageTitle: user.name,
+    user,
+  });
 };
 
 export const getEditProfile = async (req, res) => {

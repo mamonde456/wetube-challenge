@@ -111,7 +111,8 @@ export const viewApi = async (req, res) => {
   }
   video.meta.views = video.meta.views + 1;
   await video.save();
-  return res.sendStatus(200);
+  console.log(video.meta.views);
+  return res.sendStatus(201);
 };
 
 export const commentsApi = async (req, res) => {
