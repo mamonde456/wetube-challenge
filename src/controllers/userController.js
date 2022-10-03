@@ -66,7 +66,7 @@ export const userGithubStart = (req, res) => {
 };
 
 export const userGithubFinish = async (req, res) => {
-  const code = req.query.code;
+  const { code } = req.query;
   const apiUrl = "https://github.com/login/oauth/access_token";
   const config = {
     client_id: process.env.GH_CLIENT,
@@ -75,7 +75,7 @@ export const userGithubFinish = async (req, res) => {
   };
   const params = new URLSearchParams(config).toString();
   const finalUrl = `${apiUrl}?${params}`;
-
+  console.log(finalUrl);
   const data = await (
     await fetch(finalUrl, {
       method: "post",
@@ -84,20 +84,21 @@ export const userGithubFinish = async (req, res) => {
       },
     })
   ).json();
+
   if ("access_token" in data) {
     const { access_token } = data;
     const apiUrl = "https://api.github.com";
     const userData = await (
       await fetch(`${apiUrl}/user`, {
         headers: {
-          Authorization: `token ${access_token}`,
+          Authorization: `Bearer ${access_token}`,
         },
       })
     ).json();
     const userEmailData = await (
       await fetch(`${apiUrl}/user/emails`, {
         headers: {
-          Authorization: `token ${access_token}`,
+          Authorization: `Bearer ${access_token}`,
         },
       })
     ).json();
