@@ -10,7 +10,6 @@ module.exports = {
     videoRecording: BASE_URL + "videoRecording.js",
     videoComments: BASE_URL + "videoComments.js",
     header: BASE_URL + "header.js",
-    comment: BASE_URL + "comment.js",
     errorMsg: BASE_URL + "errorMsg.js",
   },
   plugins: [
