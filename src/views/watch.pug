@@ -4,7 +4,7 @@ include mixins/comment
 block content 
         div.video-watch-wrap
             div#videoContainer(data-id=video._id)
-                video(src="/"+video.fileUrl)
+                video(src=video.fileUrl)
                 div#videoControls
                     i#play.fas.fa-play
                     i#mute.fas.fa-volume-low
@@ -31,7 +31,7 @@ block content
                 div.video-owner
                     div.avatar-wrap
                         a(href=`/users/${video.owner._id}`)
-                            div.avatar-img(style=`background-image:url(/${video.owner.avatarUrl}); background-size:cover; background-position:center;`)
+                            div.avatar-img(style=`background-image:url(${video.owner.avatarUrl}); background-size:cover; background-position:center;`)
                         a.owner-name(href=`/users/${video.owner._id}`)=video.owner.name
                     div.videoIntro
                         p.video-overview=video.overview
@@ -41,7 +41,7 @@ block content
                 hr.line
                 if loggedIn
                     div.txt-wrap 
-                        div.txtAvatar(style=`background-image:url(/${video.owner.avatarUrl}); background-size:cover; background-position:center;`)
+                        div.txtAvatar(style=`background-image:url(${video.owner.avatarUrl}); background-size:cover; background-position:center;`)
                         form#txtForm
                             textarea#txtBox( placeholder="write a comments..." name="comments" )
                             button#txtBtn send

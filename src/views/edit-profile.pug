@@ -5,7 +5,7 @@ block content
         h3.pageTitle=pageTitle
         if errorMessage 
             span=errorMessage
-        img#avatarEditImg(src="/"+ loggedInUser.avatarUrl) 
+        img#avatarEditImg(src=loggedInUser.avatarUrl) 
         form#editProfile( method="post" enctype="multipart/form-data") 
             label(for="avatar") avatar
             input(type="file" name="avatar" id="avatar" accept="image/*")
