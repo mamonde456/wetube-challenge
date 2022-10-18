@@ -4,9 +4,9 @@ const videoControls = document.querySelector("#videoControls");
 const playBtn = document.querySelector("#play");
 const muteBtn = document.querySelector("#mute");
 const volume = document.querySelector("#volume");
-const timeline = document.querySelector("#timeline");
-const minTime = document.querySelector("#currentTime");
-const maxTime = document.querySelector("#maxTime");
+const timeline = document.getElementById("timeline");
+const minTime = document.getElementById("currentTime");
+const maxTime = document.getElementById("maxTime");
 const fullScreen = document.querySelector("#fullScreen");
 
 let volumeValue;
@@ -35,6 +35,9 @@ const handleVolume = (event) => {
     target: { value },
   } = event;
   video.volume = value;
+  muteBtn.className =
+    video.volume === 0 ? "fas fa-volume-xmark" : "fas fa-volume-low";
+
   volumeValue = value;
 };
 
@@ -43,7 +46,6 @@ const formatTime = (time) =>
 
 const handleLoadedMetaDataVideo = () => {
   maxTime.innerText = formatTime(Math.floor(video.duration));
-  console.log(maxTime);
   timeline.max = Math.floor(video.duration);
 };
 
@@ -96,6 +98,8 @@ const handleKeyDown = (event) => {
     handleFullScreen();
   }
 };
+
+video.addEventListener("click", handlePlay);
 
 playBtn.addEventListener("click", handlePlay);
 muteBtn.addEventListener("mouseenter", handleVolumeEnter);
