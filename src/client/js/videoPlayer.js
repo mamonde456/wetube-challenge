@@ -43,6 +43,7 @@ const formatTime = (time) =>
 
 const handleLoadedMetaDataVideo = () => {
   maxTime.innerText = formatTime(Math.floor(video.duration));
+  console.log(maxTime);
   timeline.max = Math.floor(video.duration);
 };
 
