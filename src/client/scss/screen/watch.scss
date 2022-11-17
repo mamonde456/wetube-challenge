@@ -1,16 +1,74 @@
-.video-watch-wrap {
-  width: 1200px;
+#headerWrap {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+  left: -250px;
+  transition: ease 0.5s;
+  background-color: #2c3333;
+}
+.watchOverlay {
+  background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
-  left: 50%;
-  margin-left: -600px;
-  // background: red;
+}
+.videoAllBox {
+  width: 100%;
   padding-top: 80px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.videoListBox {
+  height: 100%;
+}
+.videoListWrap {
+  width: 350px;
+  height: 120px;
+  // height: 100vh;
+  display: flex;
+  // gap: 10px;
+  margin-bottom: 10px;
+}
+.videoListInfo {
+  color: white;
+}
+
+.videoListthumbImg {
+  width: 150px;
+  height: 120px;
+  border-radius: 10px;
+  background-color: white;
+}
+.videoListTitle {
+  height: 50px;
+  padding: 5px;
+  word-break: break-all;
+  line-height: 22px;
+}
+.fontSize {
+  font-size: 12px;
+  opacity: 0.8;
+  padding: 5px;
+}
+
+.videoListMeta {
+  display: flex;
+  gap: 10px;
+}
+
+.video-watch-wrap {
+  width: 1000px;
+  // margin: 0 auto;
+  // position: absolute;
+  // left: 50%;
+  // margin-left: -600px;
+  // background: red;
 }
 #videoContainer {
   position: relative;
   video {
     width: 100%;
-    height: 720px;
+    height: 600px;
   }
   background-color: black;
 }
@@ -62,7 +120,7 @@
 }
 
 .video_info {
-  width: 1200px;
+  width: 100%;
   margin: 0 auto;
   position: relative;
   color: white;

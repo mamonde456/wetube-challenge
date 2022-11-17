@@ -1,54 +1,64 @@
 extends base
 include mixins/comment
+include mixins/videoList
 
 block content 
-        div.video-watch-wrap
-            div#videoContainer(data-id=video._id)
-                video(src=video.fileUrl)
-                div#videoControls
-                    i#play.fas.fa-play
-                    i#mute.fas.fa-volume-low
-                    input#volume( type="range" step="0.1"  min="0" max="1")
-                    p#time
-                        span#currentTime 00 : 00 : 00
-                        span | 
-                        span#maxTime 00 : 00 : 00
-                    input#timeline( type="range" step="1" value="0" min="0")
-                    i#fullScreen.fas.fa-expand
+        #headerWrap(data-set="watch")
+            include partials/header.pug
+        .videoAllBox 
+            div.video-watch-wrap
+                div#videoContainer(data-id=video._id)
+                    video(src=video.fileUrl)
+                    div#videoControls
+                        i#play.fas.fa-play
+                        i#mute.fas.fa-volume-low
+                        input#volume( type="range" step="0.1"  min="0" max="1")
+                        p#time
+                            span#currentTime 00 : 00 : 00
+                            span | 
+                            span#maxTime 00 : 00 : 00
+                        input#timeline( type="range" step="1" value="0" min="0")
+                        i#fullScreen.fas.fa-expand
 
-            div.video_info
-                if String(loggedInUser._id) === String(video.owner._id)
-                    .video-edit-wrap 
-                        p
-                            a(href=`${video._id}/edit-video`) edit video &rarr; 
-                        p
-                            a(href=`${video._id}/delete`) delete video &rarr; 
-                h3.video-title=video.title
-                small.videoViews #{video.meta.views} #{views === 1 ? "view":"views"}
-                span ·
-                small.video-createdAt=video.createdAt
-                hr.line
-                div.video-owner
-                    div.avatar-wrap
-                        a(href=`/users/${video.owner._id}`)
-                            div.avatar-img(style=`background-image:url(${video.owner.avatarUrl}); background-size:cover; background-position:center;`)
-                        a.owner-name(href=`/users/${video.owner._id}`)=video.owner.name
-                    div.videoIntro
-                        p.video-overview=video.overview
-                        div.video-hashtag 
-                            each hashtag in video.hashtags
-                                span=hashtag
-                hr.line
-                if loggedIn
-                    div.txt-wrap 
-                        div.txtAvatar(style=`background-image:url(${video.owner.avatarUrl}); background-size:cover; background-position:center;`)
-                        form#txtForm
-                            textarea#txtBox( placeholder="write a comments..." name="comments" )
-                            button#txtBtn send
-                div#commentWrap
-                    ul#commentList
-                        each comment in video.comments.reverse()
-                            +comment(comment)
+                div.video_info
+                    if String(loggedInUser._id) === String(video.owner._id)
+                        .video-edit-wrap 
+                            p
+                                a(href=`${video._id}/edit-video`) edit video &rarr; 
+                            p
+                                a(href=`${video._id}/delete`) delete video &rarr; 
+                    h3.video-title=video.title
+                    small.videoViews #{video.meta.views} #{views === 1 ? "view":"views"}
+                    span ·
+                    small.video-createdAt=video.createdAt
+                    hr.line
+                    div.video-owner
+                        div.avatar-wrap
+                            a(href=`/users/${video.owner._id}`)
+                                div.avatar-img(style=`background-image:url(${video.owner.avatarUrl}); background-size:cover; background-position:center;`)
+                            a.owner-name(href=`/users/${video.owner._id}`)=video.owner.name
+                        div.videoIntro
+                            p.video-overview=video.overview
+                            div.video-hashtag 
+                                each hashtag in video.hashtags
+                                    span=hashtag
+                    hr.line
+                    if loggedIn
+                        div.txt-wrap 
+                            div.txtAvatar(style=`background-image:url(${video.owner.avatarUrl}); background-size:cover; background-position:center;`)
+                            form#txtForm
+                                textarea#txtBox( placeholder="write a comments..." name="comments" )
+                                button#txtBtn send
+                    div#commentWrap
+                        ul#commentList
+                            each comment in video.comments.reverse()
+                                +comment(comment)
+            div.videoListBox
+                if videos
+                    each videoList in videos
+                        +videoList(videoList)
+                else 
+                    p.notingText video noting found.
                     
 block scripts
     script(src="/static/js/videoPlayer.js")
