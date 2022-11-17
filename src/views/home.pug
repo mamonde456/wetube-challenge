@@ -2,9 +2,12 @@ extends base
 include mixins/video
 
 block content 
+    include partials/header.pug
     div.home-wrap
+
         if videos
             each video in videos
                 +video(video)
         else 
             p.notingText video noting found.
+

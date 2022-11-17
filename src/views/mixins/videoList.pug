@@ -1,0 +1,12 @@
+mixin videoList(videoList)
+
+        a(href=`/videos/${videoList._id}`)
+            div.videoListWrap
+                div.videoListthumbImg(style=`background-image:url(${videoList.thumbUrl}); background-size:cover; background-position:center;`)
+                div.videoListInfo
+                    h3.videoListTitle=videoList.title.length >=80 ? videoList.title+"...": videoList.title
+                    p.fontSize=videoList.owner.name
+                    div.videoListMeta.fontSize 
+                        p #{videoList.meta.views} #{videoList.meta.views === 1  ? "view" :"views"}
+                        small.videoListCreatedAt=String(videoList.createdAt).slice(0,16)
+        

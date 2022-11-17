@@ -1,8 +1,11 @@
 .home-wrap {
-  width: 1400px;
-  margin: 0 auto;
+  width: 1200px;
+  padding-top: 150px;
+  // position: relative;
+  // left: 50%;
+  // margin-left: -660px;
+  // top: 150px;
   display: flex;
   flex-wrap: wrap;
   gap: 50px;
-  padding: 150px 0px;
 }
