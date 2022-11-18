@@ -6,8 +6,11 @@ const a = document.querySelectorAll("#headerList li a");
 const icon = document.querySelectorAll("#headerList li a i");
 const span = document.querySelectorAll("#headerList li a span");
 
-const { set } = headerWatch.dataset;
-console.log(set);
+let set;
+
+if (headerWatch) {
+  set = headerWatch.dataset.set;
+}
 
 const handleMenuOpen = () => {
   menu.removeEventListener("click", handleMenuOpen);
@@ -32,7 +35,7 @@ const handleMenuOpen = () => {
   }
 };
 
-const handleMenuClose = (e) => {
+const handleMenuClose = () => {
   menu.removeEventListener("click", handleMenuClose);
   menu.addEventListener("click", handleMenuOpen);
   if (set) {

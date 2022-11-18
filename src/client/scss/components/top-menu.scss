@@ -6,16 +6,8 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  #menuIconWrap {
-    margin-left: 20px;
-    padding: 10px;
-    font-size: 24px;
-    color: white;
-  }
-  div#iconWrap {
-    // height: 70px;
-    // position: absolute;
-    // left: 100px;
+
+  #topBox {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,6 +18,13 @@
       font-weight: 700;
     }
   }
+  #menuIconWrap {
+    margin-left: 20px;
+    padding: 10px;
+    font-size: 24px;
+    color: white;
+  }
+
   #homeIcon {
     width: 30px;
     height: 20px;
