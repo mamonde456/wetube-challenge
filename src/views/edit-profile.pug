@@ -1,6 +1,8 @@
 extends base
 
 block content
+    #headerWrap(data-set="editProfile")
+        include partials/header.pug
     .videoWrap
         h3.pageTitle=pageTitle
         if errorMessage 

@@ -1,6 +1,8 @@
 extends base
 
-block content 
+block content
+    #headerWrap(data-set="editVideo")
+        include partials/header.pug
     div.videoWrap
         h3.pageTitle=pageTitle
         if errorMessage

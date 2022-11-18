@@ -1,6 +1,8 @@
 extends base
 
-block content 
+block content
+    #headerWrap(data-set="join")
+        include partials/header.pug
     if errorMessage 
         span=errorMessage
     .formWrap 

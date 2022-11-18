@@ -2,7 +2,9 @@ extends base
 include mixins/video
 include mixins/comment
 
-block content 
+block content
+    #headerWrap(data-set="profile")
+        include partials/header.pug
     div.videoWrap.clickWrap
         h3.pageTitle.paddingBottom Profile
         #profileWrap 

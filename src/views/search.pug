@@ -1,7 +1,9 @@
 extends base
 include mixins/search
 
-block content 
+block content
+    #headerWrap(data-set="search")
+        include partials/header.pug
     .videoWrap 
         h3.pageTitle=pageTitle
         div.formWrap
