@@ -1,4 +1,6 @@
 # wetube-challenge
+website: ~https://wetube-clone-coding-js.herokuapp.com/~
+website: https://youtube-clone-coding.fly.dev/
 
 ### front-end
 pug, webpack(scss, js)
