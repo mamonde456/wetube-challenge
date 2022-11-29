@@ -1,6 +1,11 @@
 # wetube-challenge
+youtube clone coding 해보기
+
+<br>
 website: ~https://wetube-clone-coding-js.herokuapp.com/~ <br>
-website: https://youtube-clone-coding.fly.dev/
+
+website: https://youtube-clone-coding.fly.dev/<br>
+= heroku 무료 티어 종료로 배포 수정
 
 ### front-end
 pug, webpack(scss, js)
