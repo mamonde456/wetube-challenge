@@ -8,7 +8,7 @@ mixin comment(comment)
             p.commentName=comment.name
             .commentTxtWrap    
                 p.commentText=comment.text
-                small.commentCreatedAt=comment.createdAt
+                small.commentCreatedAt=String(comment.createdAt).slice(0,21)
         if String(comment.owner) === String(loggedInUser._id)
             .btnWrap 
                 i.fas.fa-ellipsis-vertical.commentsBtnIcon

@@ -30,7 +30,7 @@ block content
                     h3.video-title=video.title
                     small.videoViews #{video.meta.views} #{views === 1 ? "view":"views"}
                     span ·
-                    small.video-createdAt=video.createdAt
+                    small.video-createdAt=String(video.createdAt).slice(0,16)
                     hr.line
                     div.video-owner
                         div.avatar-wrap
