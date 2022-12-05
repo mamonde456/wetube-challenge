@@ -11,6 +11,8 @@
   margin-bottom: 10px;
 }
 .infoWrap {
+  width: 100%;
+  position: relative;
   display: flex;
 }
 .avatarImg {
@@ -49,4 +51,36 @@
 
 .watchVideoListWrap {
   width: 100px;
+}
+.videoSettingBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  text-align: center;
+  line-height: 30px;
+  position: absolute;
+  right: 0;
+  display: none;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+.videoSettingMenu {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  border-radius: 10px;
+  color: black;
+  position: absolute;
+  right: 0;
+  bottom: -60px;
+  display: flex;
+  flex-direction: column;
+  display: none;
+  p {
+    padding: 10px;
+  }
+}
+.selectedMenu {
+  display: flex;
 }

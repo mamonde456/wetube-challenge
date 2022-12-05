@@ -3,11 +3,12 @@ include mixins/video
 
 block content 
     include partials/header.pug
-    div.home-wrap
+    div#home-wrap
 
         if videos
             each video in videos
                 +video(video)
         else 
             p.notingText video noting found.
-
+block scripts 
+    script(src="/static/js/videoSetting.js")

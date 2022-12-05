@@ -11,6 +11,7 @@ module.exports = {
     videoComments: BASE_URL + "videoComments.js",
     header: BASE_URL + "header.js",
     errorMsg: BASE_URL + "errorMsg.js",
+    videoSetting: BASE_URL + "videoSetting.js",
   },
   plugins: [
     new MiniCssExtractPlugin({
