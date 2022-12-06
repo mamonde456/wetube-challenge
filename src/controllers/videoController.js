@@ -158,3 +158,16 @@ export const commentDelete = async (req, res) => {
   const comment = await Comment.findByIdAndDelete(newCommentId);
   return res.sendStatus(201);
 };
+
+export const feedbackApi = async (req, res) => {
+  const {
+    body: { id },
+  } = req;
+  const video = await Video.findById(id);
+  if (!video) {
+    return res.sendStatus(404);
+  }
+  video.meta.feedback = video.meta.feedback + 1;
+  await video.save();
+  return res.sendStatus(200);
+};

@@ -25,6 +25,7 @@ videoRouter
   .all(protectMiddleware)
   .get(getEdit)
   .post(postEdit);
+
 videoRouter.get("/:id([0-9a-f]{24})/delete", protectMiddleware, deleteVideo);
 
 export default videoRouter;

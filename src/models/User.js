@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
   intro: { type: String, default: "" },
   createdAt: { type: Date, required: true, default: Date.now },
   videos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Video" }],
+  laterVideos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Video" }],
   comments: [
     { type: mongoose.Schema.Types.ObjectId, required: true, ref: "Comment" },
   ],

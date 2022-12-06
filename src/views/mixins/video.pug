@@ -8,7 +8,17 @@ mixin video(video)
                 div.avatarImg(style=`background-image:url(${video.owner.avatarUrl}); background-size:cover; background-position:center; background-color:white;`)
                 i.fas.fa-ellipsis-vertical.videoSettingBtn
                 .videoSettingMenu 
-                    p 좋아요
+                    if loggedIn
+                        div(data-videoId=video._id, data-set="good")    
+                            i.fas.fa-heart
+                            p 좋아요
+                        div(data-videoId=video._id, data-set="restart")
+                            i.far.fa-clock
+                            p 나중에 다시 볼 동영상
+                    else 
+                        div.homeLoginBtn 
+                            i.fas.fa-user
+                            p 로그인 후 이용할 수 있습니다.
                 div.video-info-wrap
                     h3.video-title=video.title
                     p.video-name=video.owner.name
