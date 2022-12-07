@@ -10,8 +10,8 @@ import {
 const apiRouter = express.Router();
 
 apiRouter.post("/videos/:id([0-9a-f]{24})/views", viewApi);
-apiRouter.get("/videos/:id([0-9a-f]{24})/feedbackApi", feedbackApi);
-apiRouter.get("/users/:id([0-9a-f]{24})/laterVideoApi", laterVideoApi);
+apiRouter.post("/videos/:id([0-9a-f]{24})/feedback", feedbackApi);
+apiRouter.post("/users/:id([0-9a-f]{24})/latervideo", laterVideoApi);
 
 apiRouter
   .route("/videos/:id([0-9a-f]{24})/comments")

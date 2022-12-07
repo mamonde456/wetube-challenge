@@ -58,8 +58,12 @@ const handleApi = async (e) => {
   e.preventDefault();
   const { videoid, set } = e.currentTarget.dataset;
   if (set === "good") {
-    const response = await fetch(`/api/videos/${videoid}/feedbackApi`, {
+    console.log(videoid);
+    const response = await fetch(`/api/videos/${videoid}/feedback`, {
       method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ id: videoid }),
     });
     const data = await response.json();

@@ -31,6 +31,8 @@ block content
                     small.videoViews #{video.meta.views} #{views === 1 ? "view":"views"}
                     span ·
                     small.video-createdAt=String(video.createdAt).slice(0,16)
+                    span ·
+                    small.video-createdAt #{video.meta.feedback} 좋아요
                     hr.line
                     div.video-owner
                         div.avatar-wrap
