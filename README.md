@@ -3,7 +3,6 @@
 youtube clone coding 해보기
 
 <br>
-website: ~~https://wetube-clone-coding-js.herokuapp.com~~
 
 website: https://wetube-clone-coding.fly.dev
 <br> => heroku 무료 티어 종료로 수정
