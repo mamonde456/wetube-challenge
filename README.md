@@ -6,6 +6,7 @@ youtube clone coding 해보기
 
 website: https://wetube-clone-coding.fly.dev
 <br> => heroku 무료 티어 종료로 수정
+<br> => AWS 무료 지원 종료로 작동하지 않습니다.
 
 ### front-end
 
